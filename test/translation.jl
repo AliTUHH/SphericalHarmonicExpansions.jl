@@ -10,22 +10,22 @@
     v = randn(3) # Verschiebung
     pkt = randn(3) # Testpunkt
 
-    vp = pkt+v;
-                  
-    for l=0:4
-        for m=-l:l
-            q = SphericalHarmonicExpansions.zlm(l,m,x,y,z);
-            p = SphericalHarmonicExpansions.translateRlm(l,m,v[1],v[2],v[3]);
+    vp = pkt+v;
+                  
+    for l=0:4
+        for m=-l:l
+            q = SphericalHarmonicExpansions.zlm(l,m,x,y,z);
+            p = SphericalHarmonicExpansions.translateRlm(l,m,v[1],v[2],v[3]);
 
             polyRlm = @fastfunc q;
             polyTranslateRlm = @fastfunc p;
 
-            Wert[l*(l+1)+m+1,1] = polyRlm(vp[1],vp[2],vp[3]);
-            Wert[l*(l+1)+m+1,2] = polyTranslateRlm(pkt[1],pkt[2],pkt[3]);
+            Wert[l*(l+1)+m+1,1] = polyRlm(vp[1],vp[2],vp[3]);
+            Wert[l*(l+1)+m+1,2] = polyTranslateRlm(pkt[1],pkt[2],pkt[3]);
         end
     end
 
-    @test isapprox(Wert[:,1],Wert[:,2],atol = ε)
+    @test isapprox(Wert[:,1],Wert[:,2],atol = ε)
 end
 
 #################################################
@@ -58,10 +58,10 @@ end
     # solid & spherical Expansion              #
     ############################################
     # Coefficients
-    Cspher = SphericalHarmonicCoefficients(zeros(25)); 
-    Cspher[3,-2] = 1/sqrt(15)*sqrt((4*pi)/(2*3+1));
-    Csolid = SphericalHarmonicCoefficients(zeros(25),1.0,true); 
-    Csolid[3,-2] = 1/sqrt(15);
+    Cspher = SphericalHarmonicCoefficients(zeros(25)); 
+    Cspher[3,-2] = 1/sqrt(15)*sqrt((4*pi)/(2*3+1));
+    Csolid = SphericalHarmonicCoefficients(zeros(25),1.0,true); 
+    Csolid[3,-2] = 1/sqrt(15);
 
     # Translation
     v = [1.,-1.,2.]
