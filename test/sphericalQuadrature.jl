@@ -78,6 +78,6 @@
     Cnew₂ = SphericalHarmonicExpansions.sphericalQuadrature(values₂,coordinates₄,2);
     Cnew₄ = SphericalHarmonicExpansions.sphericalQuadrature(values₄,coordinates₈,4);
 
-    @test isapprox(C₂,Cnew₂,atol=ε);
-    @test isapprox(C₄,Cnew₄,atol=ε);
+    @test isapprox(C₂,Cnew₂,atol=ɛ);
+    @test isapprox(C₄,Cnew₄,atol=ɛ);
 end

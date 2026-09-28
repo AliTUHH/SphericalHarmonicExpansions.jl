@@ -7,20 +7,20 @@
 	@polyvar x y z
 	polynomial = 3*z^2 + 2*y*x
 	g = @fastfunc polynomial
-	@test isapprox(f(t1,t2,t3),g(t1,t2,t3),atol=ɛ)
+	@test isapprox(f(t1,t2,t3),g(t1,t2,t3),atol=ε)
 	# Test inside function scope
 	function useInsideFunctionScope1(polynomial,t1,t2,t3)
 		g = @fastfunc polynomial
-		@test isapprox(f(t1,t2,t3),Base.invokelatest(g, t1,t2,t3),atol=ɛ)
+		@test isapprox(f(t1,t2,t3),Base.invokelatest(g, t1,t2,t3),atol=ε)
 	end
 	useInsideFunctionScope1(polynomial,t1,t2,t3)
 
 	h = fastfunc(polynomial)
-    @test isapprox(f(t1,t2,t3),h(r),atol=ɛ)
+    @test isapprox(f(t1,t2,t3),h(r),atol=ε)
 	# Test inside function scope
 	function useInsideFunctionScope2(polynomial,t1,t2,t3,r)
         g = fastfunc(polynomial)
-		@test isapprox(f(t1,t2,t3),g(r),atol=ɛ)
+		@test isapprox(f(t1,t2,t3),g(r),atol=ε)
 	end
     useInsideFunctionScope2(polynomial,t1,t2,t3,r)
 
